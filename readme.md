@@ -22,10 +22,12 @@ Publishes temperature and humidity messages over MQTT from a BME280 sensor every
 
 The data will be published to the following topics
 
-`SERVER_USER/feeds/habistatus.LOCATION-temp`
-`SERVER_USER/feeds/habistatus.LOCATION-humidity`
-
+```
+SERVER_USER/feeds/habistatus.LOCATION-temp
+SERVER_USER/feeds/habistatus.LOCATION-humidity
+```
 for example:
-
-`myname/feeds/habistatus.garage-temp`
-`myname/feeds/habistatus.garage-humidity`
+```
+myname/feeds/habistatus.garage-temp
+myname/feeds/habistatus.garage-humidity
+```
