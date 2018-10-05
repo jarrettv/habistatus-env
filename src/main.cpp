@@ -9,9 +9,9 @@
 #define LOCATION "attic"
   
 WiFiClientSecure client;
-Adafruit_MQTT_Client mqtt(&client, IO_SERVER, IO_SERVERPORT, IO_USERNAME, IO_KEY);
-Adafruit_MQTT_Publish tempFeed = Adafruit_MQTT_Publish(&mqtt, IO_USERNAME "/feeds/habistatus." LOCATION "-temp");
-Adafruit_MQTT_Publish humidityFeed = Adafruit_MQTT_Publish(&mqtt, IO_USERNAME "/feeds/habistatus." LOCATION "-humidity");
+Adafruit_MQTT_Client mqtt(&client, SERVER, SERVER_PORT, SERVER_USER, SERVER_PASS);
+Adafruit_MQTT_Publish tempFeed = Adafruit_MQTT_Publish(&mqtt, SERVER_USER "/feeds/habistatus." LOCATION "-temp");
+Adafruit_MQTT_Publish humidityFeed = Adafruit_MQTT_Publish(&mqtt, SERVER_USER "/feeds/habistatus." LOCATION "-humidity");
 
 BME280 mySensor; //Global sensor object
  
