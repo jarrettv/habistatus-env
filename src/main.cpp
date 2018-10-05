@@ -39,9 +39,10 @@ void setup()
   Serial.print("IP address: "); 
   Serial.println(WiFi.localIP());
 
+  pinMode(D5, OUTPUT); // power for sensor
+  digitalWrite(D5, HIGH); // power it up
   Wire.begin();
   Wire.setClock(400000);
- 
   mySensor.setI2CAddress(0x76);
   mySensor.beginI2C(Wire);
 }
@@ -76,6 +77,10 @@ void MQTT_connect() {
 void loop()
 {
     MQTT_connect();
+    
+    // turn back on the sensor once we turn it off, since it gets more accurate reading that way
+    digitalWrite(D5, HIGH);
+    delay(100);
 
     float relative_humidity = mySensor.readFloatHumidity();
     Serial.print("Humidity: ");
@@ -85,12 +90,13 @@ void loop()
     Serial.print(mySensor.readFloatPressure(), 0);
 
     Serial.print(" Alt: ");
-    //Serial.print(mySensor.readFloatAltitudeMeters(), 1);
     Serial.print(mySensor.readFloatAltitudeFeet(), 1);
 
     Serial.print(" Temp: ");
     float fahrenheit = mySensor.readTempF();
     Serial.print(fahrenheit, 2);
+    
+    digitalWrite(D5, LOW); // turn off sensor
     
     Serial.println();
 
